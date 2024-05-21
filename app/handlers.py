@@ -13,14 +13,8 @@ router = Router()
 
 @router.message(CommandStart())
 async def cmd_start(message: Message, state: FSMContext):
-    await message.answer('Добро пожаловать!',
-                         reply_markup=kb.main)
-    await state.clear()
-
-
-@router.message(F.text == 'Chat')
-async def chatting(message: Message, state: FSMContext):
-    await message.answer('Введите Ваш запрос')
+    await message.answer(
+        'Как долго вы вместе и какие вы видите проблемы в ваших отношениях?')
     await state.set_state(st.Chat.text)
 
 
@@ -36,4 +30,4 @@ async def chatting_result(message: Message, state: FSMContext):
 
 @router.message(st.Chat.process)
 async def chatting_error(message: Message, state: FSMContext):
-    await message.answer('Подождите ответ или напишите /start чтобы сбросить состояние.')
+    await message.answer('Подождите, пожалуйста')
