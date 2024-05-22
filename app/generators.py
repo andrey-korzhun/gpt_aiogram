@@ -16,10 +16,7 @@ client = AsyncOpenAI(api_key=os.getenv('OPENAITOKEN'),
 async def gpt_text(req):
     completion = await client.chat.completions.create(
         messages=[
-            {
-                "role": "user",
-                "content": req,
-            }
+            {"role": "system", "content": req}
         ],
         model=os.getenv('CHATGPT_MODEL'),
     )
